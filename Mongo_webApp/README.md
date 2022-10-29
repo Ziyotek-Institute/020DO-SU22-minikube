@@ -7,7 +7,7 @@ minikube status
 
 Change directory:
 ```
-cd /home/admin/020DO-SU22-minikube/Volumes
+cd /home/admin/020DO-SU22-minikube/Mongo_webApp
 ```
 
 1. Apply the mongo-cm.yaml, mongo-secret.yaml
