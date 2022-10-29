@@ -7,6 +7,11 @@ minikube status
 minikube status
 ```
 
+Change directory:
+```
+cd /home/admin/020DO-SU22-minikube/Volumes
+```
+
 ## 1. Apply the redis-cm.yaml, redis-deploy.yaml
 ```
 kubectl apply -f redis-cm.yaml
@@ -44,8 +49,22 @@ redis-config:
 
 ## 2. Use kubectl exec to enter the pod and run the redis-cli tool to check the current configuration:
 
+List the pods with label redis
+
 ```
-kubectl exec -it redis -- redis-cli
+kubectl get pod -l app=redis
+```
+
+Expected output
+```
+NAME                    READY   STATUS              RESTARTS   AGE
+redis-66d8cf866-qdnnl   0/1     ContainerCreating   0          15s
+```
+
+Copy the pod name under Name column, and use it as an input for  
+
+```
+kubectl exec -it <redisPod> -- redis-cli
 ```
 
 Check maxmemory:
@@ -90,7 +109,7 @@ data:
 Apply the updated ConfigMap:
 
 ```
-kubectl apply -f example-redis-config.yaml
+kubectl apply -f redis-cm.yaml
 ```
 
 Confirm that the ConfigMap was updated:
