@@ -3,20 +3,20 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
-  name: example-app
+  name: grafana
 spec:
   tls:
   - hosts:
-    - gckubie.com
-    secretName: example-app-tls
+    - grafana.gckubie.com
+    secretName: grafana-app-tls
   rules:
-  - host: gckubie.com
+  - host: grafana.gckubie.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service: 
-            name: example-service
+            name: grafana-np
             port: 
               number: 80
