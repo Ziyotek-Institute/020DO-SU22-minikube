@@ -86,7 +86,7 @@ minikube service grafana-np
 4. Configure Prometheus Datasource
 
 * We need to head to Configuration > Datasources and add a new Prometheus instance.
-* The URL for our Prometheus instance is the name of the service http://prometheus-server:80.
+* The URL for our Prometheus instance is the name of the service `http://prometheus-server:80` 
 
 5. Kubernetes Dashboard bootstrap
 
