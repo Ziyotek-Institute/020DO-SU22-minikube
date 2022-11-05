@@ -41,7 +41,7 @@ kubectl expose service prometheus-server --type=NodePort --target-port=9090 --na
 
 minikube service prometheus-server-np
 
-# Open local browser and paster -> http://127.0.0.1:9090
+# Open local browser and paster -> http://127.0.0.1:*****
 ```
 
 2. Install Grafana
