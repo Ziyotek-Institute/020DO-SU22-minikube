@@ -3,6 +3,7 @@
 ## Prerequisites and dependencies
 ```
 minikube status
+minikube addons enable ingress
 ```
 
 Change directory:
@@ -10,7 +11,7 @@ Change directory:
 cd /home/admin/020DO-SU22-minikube/Mongo_webApp
 ```
 
-1. Apply the mongo-cm.yaml, mongo-secret.yaml
+1. Apply/create the k8s objects {{.kind.Deployment}} &  {{.kind.Service.spec.type.ClusterIp}}
 
 ```
 kubectl apply -f mongo-cm.yaml -f mongo-secret.yaml
@@ -20,13 +21,15 @@ kubectl apply -f mongo-cm.yaml -f mongo-secret.yaml
 ```
 kubectl apply -f mongo.yaml
 ```
-3. Apply the webapp.yaml
+3. Apply/create the k8s objects {{.kind.Deployment}} &  {{.kind.Service.spec.type.NodePort}} 
 
 ```
 kubectl apply -f webapp.yaml
 ```
 
-4. Clean up
+4. Apply/create the k8s object {{.kind.Ingress}} 
+
+5. Clean up
 
 ```
 kubectl delete deployment.apps/mongo deployment.apps/webapp service/mongo-service service/webapp-service
