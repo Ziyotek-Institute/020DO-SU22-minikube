@@ -10,7 +10,7 @@ In this LAB you will deploy [Prometheus](https://prometheus.io/) and [Grafana](h
 
 * [Minikube](https://github.com/kubernetes/minikube) 
 * [Helm](https://helm.sh/)
-
+* brew install helm if you are on macOS
 ```
 mkdir -p ~/pre-reqs/; cd ~/pre-reqs/
 
