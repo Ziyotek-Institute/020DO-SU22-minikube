@@ -1,11 +1,26 @@
-# 020DO-SU22-minikube Volumes: Configuring Redis using a ConfigMap
-Minikube is a single node Kubernetes deployment on local host
+# 020DO-SU22-minikube Volumes: Configuring Redis using a ConfigMap #
+
+[minikube](https://github.com/kubernetes/minikube)  is a single node Kubernetes deployment on local host
  
-## Prerequisites and dependencies
+## Prerequisites and dependencies ## 
+
+You can check that the node is up and running by running: `minikube
+status`. You should see something like:
 ```
-minikube status
-minikube status
+minikube: Running
+cluster: Running
+kubectl: Correctly Configured: pointing to minikube-vm at 192.168.64.48
 ```
+
+If you want to stop the cluster, run `minikube stop`. To start it, run
+`minikube start`.
+
+Run `kubectl cluster-info` and you should see something like:
+```
+kubernetes master is running at https://192.168.64.2:8443
+kubernetes-dashboard is running at https://192.168.64.2:8443/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard
+```
+
 
 Change directory:
 ```
@@ -18,7 +33,7 @@ kubectl apply -f redis-cm.yaml
 kubectl apply -f redis-deploy.yaml
 ```
 
-Examine the contents of the Redis pod manifest and note the following:
+Examine the contents of the [Redis](https://redis.io/) pod manifest and note the following:
 
 * A volume named config is created by spec.volumes[1]
 * The key and path under spec.volumes[1].items[0] exposes the redis-config key from the example-redis-config ConfigMap as a file named redis.conf on the config volume.
