@@ -90,8 +90,7 @@ minikube service grafana-np
 
 5. Kubernetes Dashboard bootstrap
 
-* We head to Create (+) > Import section to Import via grafana.com and we set 6417 into the id field and click Load.
-* We head to Create (+) > Import section to Import via grafana.com and we set 6417 into the id field and click Load.
+* We head to Create (+) > Import section to Import via grafana.com and we set 6417 and 1860 into the id field and click Load.
 * In the dashboard configuration we need to select the Prometheus Datasource we created in the earlier step.
 
 6. Clean Up
