@@ -10,6 +10,7 @@ In this LAB you will deploy [Prometheus](https://prometheus.io/) and [Grafana](h
 
 * [Minikube](https://github.com/kubernetes/minikube) 
 * [Helm](https://helm.sh/)
+
 ```
 mkdir -p ~/pre-reqs/; cd ~/pre-reqs/
 
@@ -36,7 +37,9 @@ helm install prometheus prometheus-community/prometheus
 
 export POD_NAME=$(kubectl get pods --namespace default -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
 
-kubectl --namespace default port-forward $POD_NAME 9090
+kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
+
+minikube service prometheus-server-np
 
 # Open local browser and paster -> http://127.0.0.1:9090
 ```
@@ -66,7 +69,12 @@ nslookup grafana.default.svc.cluster.local
 
 export POD_GRAFANA=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=grafana" -o jsonpath="{.items[0].metadata.name}")
 
-kubectl --namespace default port-forward $POD_GRAFANA 3000
+kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np
+
+kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+minikube service grafana-np
+
 ```
 3. Login with the password from step 1 and the username: admin
 ```
@@ -74,5 +82,26 @@ kubectl --namespace default port-forward $POD_GRAFANA 3000
 ######   WARNING: Persistence is disabled!!! You will lose your data when   #####
 ######            the Grafana pod is terminated.                            #####
 #################################################################################
+```
+4. Configure Prometheus Datasource
+
+* We need to head to Configuration > Datasources and add a new Prometheus instance.
+* The URL for our Prometheus instance is the name of the service http://prometheus-server:80.
+
+5. Kubernetes Dashboard bootstrap
+
+* We head to Create (+) > Import section to Import via grafana.com and we set 6417 into the id field and click Load.
+* We head to Create (+) > Import section to Import via grafana.com and we set 6417 into the id field and click Load.
+* In the dashboard configuration we need to select the Prometheus Datasource we created in the earlier step.
+
+6. Clean Up
+
+```
+minikube delete
+
+# or clean up individual component
+
+helm install prometheus prometheus-community/prometheus    
+helm uninstall grafana grafana/grafana
 ```
 
