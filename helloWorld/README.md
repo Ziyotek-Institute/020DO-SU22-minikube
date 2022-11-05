@@ -14,6 +14,10 @@
 
 Steps:
 
+install Kustomize on macOS `brew install kustomize`
+install Kustomize on CentOS via tool [snapp](https://snapcraft.io/install/kustomize/centos)
+install Kustomize on Windows via chocolatey `choco install kustomize`
+
  1. Clone an existing configuration as a [base].
  1. Customize it.
  1. Create two different [overlays] (_staging_ and _production_)
