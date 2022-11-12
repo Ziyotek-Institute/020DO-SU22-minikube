@@ -1,13 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-metadata:
-  name: arbitrary
 
 # Example configuration for the webserver
 # at https://github.com/monopole/hello
 
-
 resources:
-- cert-issuer-nginx-ingress.yaml
-- certificate.yaml
-- ingress.yaml
+  - echo-ingress.yaml
+  - cert-issuer-staging.yaml
+  # - echo-http.yaml
+  # - cert-issuer-nginx-ingress.yaml
+  # - certificate.yaml
+  # - monitoring-ingress.yaml
+  # - https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
+
+# patchesStrategicMerge:
+#   - cert-manager-deploy.yaml
