@@ -13,6 +13,7 @@ spec:
         deployment: hello
     spec:
       containers:
+        
       - name: the-container
         image: monopole/hello:1
         command: ["/hello",

@@ -1,0 +1,6 @@
+.pre-commit*
+monitoring*
+jira
+
+cert-issuer-nginx-ingress.yaml
+secret.yaml

@@ -1,11 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: the-service
+  name: hello-world
 spec:
   selector:
     deployment: hello
-  type: LoadBalancer
+  type: NodePort
   ports:
   - protocol: TCP
     port: 8666
